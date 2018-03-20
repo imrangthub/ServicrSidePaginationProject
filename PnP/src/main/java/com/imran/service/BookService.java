@@ -59,16 +59,11 @@ public class BookService {
 		System.out.println("Success from test Bookj Service");
 	}
 	
-	public List<Book> bookList(int reqPage){
-		int showingRowNumber = 3;
-		int currentPage = 1;
-		    currentPage=reqPage;
-		   int startPage = 0;
-		       startPage = (currentPage*showingRowNumber);
-		   if(reqPage==1){
-			   startPage = 0;
-		   }
-		   
+	public List<Book> bookList(int reqPage, int showingRowNumber){
+
+		   int startPage = 0;	
+		       startPage = ((reqPage-1)*showingRowNumber);
+
 		   System.out.println("Current page from Service"+reqPage);
 		
 		List<Book> bookList = new ArrayList<Book>();

@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,20 +83,37 @@
              
             </table>
 		       <div class="row pull-right">
+	
 		         <c:set var="startColumns" value="10" scope="session"/>
 		         <c:set var="currentPage" value="2"/>
 		       <div>
-			         <%--For displaying Previous link --%>
+
+			         <%--For displaying Start link --%>
 				    <c:if test="${currentPage > 1}">
 				    <%--     <a href="dispresult.jsp?pageNumber=${pageNumber - 1}">Previous</a> --%>
-				        <a class="btn btn-primary" href="#" role="button"> Previous</a>
+				        <a class="btn btn-primary" href="/PnP/book/pageNumber=1" role="button">|<</a>
 				    </c:if>
+				    
+				          <%--For displaying Previous link --%>
+				    <c:if test="${currentPage > 1}">
+				    <%--     <a href="dispresult.jsp?pageNumber=${pageNumber - 1}">Previous</a> --%>
+				        <a class="btn btn-primary" href="/PnP/book/pageNumber=1" role="button">Previous</a>
+				    </c:if>
+				    
 			          <c:forEach var = "i" begin = "1" end = "${dataMap.totalRow}">
-			           <a class="btn btn-primary" href="/PnP/book/${i}" role="button">page ${i}</a>
-			         </c:forEach>  
-				    <%--For displaying Next link --%>
+			            <%--    ${ i + dataMap.showingRowNumber} --%>
+			           <a class="btn btn-primary" href="/PnP/book/pageNumber=${i}" role="button">${i}</a>
+			         </c:forEach>
+			         
+			          <%--For displaying Next link --%>
 				    <c:if test="${currentPage < dataMap.totalRow}">
-				        <a class="btn btn-primary" href="#" role="button">Next >></a>
+				        <a class="btn btn-primary" href="/PnP/book/pageNumber=${dataMap.totalRow}" role="button"> Next</a>
+				     <%--    <a href="dispresult.jsp?pageNumber=${pageNumber + 1}">Next</a> --%>
+				    </c:if>  
+			         
+				    <%--For displaying End link --%>
+				    <c:if test="${currentPage < dataMap.totalRow}">
+				        <a class="btn btn-primary" href="/PnP/book/pageNumber=${dataMap.totalRow}" role="button"> >|</a>
 				     <%--    <a href="dispresult.jsp?pageNumber=${pageNumber + 1}">Next</a> --%>
 				    </c:if>
 		       </div>

@@ -23,34 +23,33 @@ public class BookController {
 	BookService bookService;
 	
 
-	@RequestMapping(value = "/book/{pageNo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/book/pageNumber={pageNo}", method = RequestMethod.GET)
 	public String dashboard(ModelMap map, @PathVariable(value="pageNo") int currentPageNumber) {
 		List<Book> bookList = new ArrayList<Book>();
+		int showingRowNumber = 3;
 		Map<String, Object> dataMap = bookService.paginateData();
+		dataMap.put("showingRowNumber", showingRowNumber);
 		
 		System.out.println("Current Page:"+currentPageNumber);
 		
-        bookList =bookService.bookList(currentPageNumber);
+        bookList =bookService.bookList(currentPageNumber, showingRowNumber);
 		map.addAttribute("bookList", bookList);
 		map.addAttribute("dataMap", dataMap);
 		return "bookHome";
 	}
 
 	
-//	@RequestMapping(value = "/book", method = RequestMethod.GET)
-//	public String loginView(Model model) {
-//		List<Book> bookList = new ArrayList<Book>();
-//		bookService.Test();
-//
-//        
-//        for(Book obj: bookList){
-//        	System.out.println("Book Name:"+obj.getName());
-//        	System.out.println("Book Type:"+obj.getType());
-//        	System.out.println("----------------------------------------");
-//        }
-//		
-//		return "bookHome";
-//	}
+	@RequestMapping(value = "/book", method = RequestMethod.GET)
+	public String loginView(ModelMap map) {
+		int showingRowNumber = 3;
+		List<Book> bookList = new ArrayList<Book>();
+		Map<String, Object> dataMap = bookService.paginateData();		
+        bookList =bookService.bookList(1, showingRowNumber);
+		map.addAttribute("bookList", bookList);
+		dataMap.put("showingRowNumber", showingRowNumber);
+		map.addAttribute("dataMap", dataMap);
+		return "bookHome";
+	}
 
 }
 
