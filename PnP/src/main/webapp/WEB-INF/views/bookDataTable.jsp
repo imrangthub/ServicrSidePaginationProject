@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +18,7 @@
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
         <!-- Application  CSS -->
     <link href="<c:url value="/resources/css/application.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/paginate.css" />" rel="stylesheet">
 
 
   </head>
@@ -60,35 +63,35 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">     
-      <h1>P to Home Page</h1>
-        <p><a class="btn btn-primary btn-lg" href="/PnP/book" role="button">Book Home Post</a></p>
-        <p><a class="btn btn-primary btn-lg" href="/PnP/bookTwo" role="button">Book Home Two</a></p>
-        <p><a class="btn btn-primary btn-lg" href="/PnP/bookDataTable" role="button">Book Home JQuery DataTable</a></p>
+      <h1>Welcome to Book Home Data Table</h1>
+        <p><a class="btn btn-primary btn-lg" href="/PnP/book role="button">Back Home</a></p>
       </div>
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
-
+    
+      <div class="row">
+       <div class="col-md-8 col-md-offset-2 well">
+          <input type="hidden" name="totalRow" id="totalRow" class="totalRow" />
+           <table name="bookTable" id="bookDataTable" class="bookDataTable" width="100%">
+				<thead>
+					<th>#</th>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Action</th>
+				</thead>				
+				<tbody id="bookDataTableTbody">										
+				</tbody>
+				
+			</table>
+     		     
+       </div>  
+    
+      </div>
       
+	
+    
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-
-
       <hr>
       <footer>
       <div>
@@ -103,5 +106,6 @@
     <script src="<c:url value="/resources/js/jquery-2.1.3.min.js" />"></script>
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
     <script src="<c:url value="/resources/js/application.js" />"></script>
+    <script src="<c:url value="/resources/js/bookDataTable.js" />"></script>
   </body>
 </html>
