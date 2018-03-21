@@ -30,8 +30,8 @@ public class BookService {
 	DataSource dataSource;
 	private Statement stmt;
 	
-	public Map<String, Object> paginateData(){
-		int showingRowNumber = 3;
+	public Map<String, Object> paginateData(int showingRowNumber ){
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		
 		String getAllDataQuery = "SELECT count(*) FROM `book` ORDER BY ID"; //  LIMIT " + 1 + ","+ 2
@@ -40,9 +40,15 @@ public class BookService {
 			ResultSet tempResult = stmt.executeQuery(getAllDataQuery);
 			tempResult.next();
 		    int rowcount = tempResult.getInt(1);
-		    rowcount = (rowcount/showingRowNumber);
-		    dataMap.put("totalRow", rowcount);
-		    System.out.println("Total Rwow"+rowcount);
+		    int totalRow=0;
+		    System.out.println("Row Count befor Cal ==========:"+rowcount);
+		    totalRow = (rowcount/showingRowNumber);
+		    if(rowcount%showingRowNumber !=0)
+		       totalRow+=1;
+
+		    System.out.println("Row Count after Cal ==========:"+rowcount);
+		    dataMap.put("totalRow", totalRow);
+		    System.out.println("Total Rwow"+totalRow);
 
 			stmt.close();
 			dataSource.getConnection().close();
