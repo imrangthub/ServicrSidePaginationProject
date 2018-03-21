@@ -90,6 +90,22 @@
     <artifactId>jstl</artifactId>
     <version>1.2</version>
 </dependency>
+
+  <!--jacksn for Ajax -->
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+      <version>1.9.10</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.3</version>
+    </dependency>
+    
+
+
 		
 		
 		<!-- Apache Commons IO --> 

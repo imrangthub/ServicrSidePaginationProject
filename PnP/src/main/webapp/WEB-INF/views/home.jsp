@@ -62,6 +62,8 @@
       <div class="container">     
       <h1>P to Home Page</h1>
         <p><a class="btn btn-primary btn-lg" href="/PnP/book" role="button">Book Home Post</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/PnP/bookTwo" role="button">Book Home Two</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/PnP/bookDataTable" role="button">Book Home JQuery DataTable</a></p>
       </div>
     </div>
 

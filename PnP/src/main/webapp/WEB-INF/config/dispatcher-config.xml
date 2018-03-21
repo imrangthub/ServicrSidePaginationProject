@@ -16,6 +16,8 @@ http://www.springframework.org/schema/tx/spring-tx-5.0.xsd">
     
 	<context:component-scan base-package="com.imran" />
 	
+	
+	
 
 	
 	<bean id="jspViewResolver"

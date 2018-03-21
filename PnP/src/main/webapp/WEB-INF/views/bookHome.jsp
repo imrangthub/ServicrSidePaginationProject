@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +63,7 @@
     <div class="jumbotron">
       <div class="container">     
       <h1>Welcome to Book Home Page</h1>
-        <p><a class="btn btn-primary btn-lg" href="/PhP/" role="button">Back Home</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/PnP/" role="button">Back Home</a></p>
       </div>
     </div>
 
@@ -83,57 +84,39 @@
              
             </table>
 		       <div class="row pull-right">
-	
-		         <c:set var="startColumns" value="10" scope="session"/>
-		         <c:set var="currentPage" value="2"/>
-		       <div>
+		         <c:set var="currentPage" value="${param.pageNumber}"/>
+	             <c:set var="currentPageOnSession" value="${currentPage }" scope="session"/>
+		         <div>
+		         
+		         <div>
+		          Check Session Value: <c:out value="${sessionScope.currentPageOnSession}"/>
+		          Total Row: <c:out value="${dataMap.totalRow}"/>
+
+		         </div>
 
 			         <%--For displaying Start link --%>
-				    <c:if test="${currentPage > 1}">
-				    <%--     <a href="dispresult.jsp?pageNumber=${pageNumber - 1}">Previous</a> --%>
-				        <a class="btn btn-primary" href="/PnP/book/pageNumber=1" role="button">|<</a>
-				    </c:if>
-				    
+				        <a class="btn btn-primary" href="/PnP/book?pageNumber=1" role="button">|<</a>		    
 				          <%--For displaying Previous link --%>
-				    <c:if test="${currentPage > 1}">
-				    <%--     <a href="dispresult.jsp?pageNumber=${pageNumber - 1}">Previous</a> --%>
-				        <a class="btn btn-primary" href="/PnP/book/pageNumber=1" role="button">Previous</a>
-				    </c:if>
+				        <a class="btn btn-primary" href="/PnP/book?pageNumber=${sessionScope.currentPageOnSession>1?sessionScope.currentPageOnSession-1:currentPageOnSession}" role="button">Previous</a>
 				    
-			          <c:forEach var = "i" begin = "1" end = "${dataMap.totalRow}">
-			            <%--    ${ i + dataMap.showingRowNumber} --%>
-			           <a class="btn btn-primary" href="/PnP/book/pageNumber=${i}" role="button">${i}</a>
-			         </c:forEach>
-			         
+				    
+					         <c:forEach var = "i" begin = "1" end = "${dataMap.totalRow}">
+					           <a class="btn btn-primary" href="/PnP/book?pageNumber=${i}" role="button">${i}</a>
+					         </c:forEach>
+			        
+			        
 			          <%--For displaying Next link --%>
-				    <c:if test="${currentPage < dataMap.totalRow}">
-				        <a class="btn btn-primary" href="/PnP/book/pageNumber=${dataMap.totalRow}" role="button"> Next</a>
-				     <%--    <a href="dispresult.jsp?pageNumber=${pageNumber + 1}">Next</a> --%>
-				    </c:if>  
-			         
+				        <a class="btn btn-primary" href="/PnP/book?pageNumber=${sessionScope.currentPageOnSession==dataMap.totalRow?dataMap.totalRow:sessionScope.currentPageOnSession+1}" role="button"> Next</a>         
 				    <%--For displaying End link --%>
-				    <c:if test="${currentPage < dataMap.totalRow}">
-				        <a class="btn btn-primary" href="/PnP/book/pageNumber=${dataMap.totalRow}" role="button"> >|</a>
-				     <%--    <a href="dispresult.jsp?pageNumber=${pageNumber + 1}">Next</a> --%>
-				    </c:if>
+				        <a class="btn btn-primary" href="/PnP/book?pageNumber=${dataMap.totalRow}" role="button"> >|</a>
+
+				    
 		       </div>
-		       
-		     <%--    <div>
-					 <c:forEach var = "i" begin = "1" end = "${dataMap.totalRow}">
-			           <a class="btn btn-primary" href="#" role="button">page ${i}</a>
-			         </c:forEach>	
-			         
-			              
-		           >>>
-		           <a class="btn btn-primary" href="#" role="button">${dataMap.totalRow}</a>
-		           <a class="btn btn-primary" href="#" role="button">Session Value<c:out value="${sessionScope.startColumns}" /></a>
-		        </div> --%>
-		       </div>
-       </div>
-          
+		     </div>
+		     
+		     
+       </div>        
       </div>
-
-
       <hr>
       <footer>
       <div>

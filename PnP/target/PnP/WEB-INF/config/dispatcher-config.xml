@@ -16,15 +16,9 @@ http://www.springframework.org/schema/tx/spring-tx-5.0.xsd">
     
 	<context:component-scan base-package="com.imran" />
 	
-<!-- 	Iterceptor configuration -->
+	
+	
 
-     <mvc:interceptors>
-<!-- 		<bean class="com.imran.common.GreetingInterceptor" /> -->
-		<mvc:interceptor>
-			<mvc:mapping path="/post/*" />
-			<bean class="com.imran.common.LoggerInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
 	
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -42,11 +36,10 @@ http://www.springframework.org/schema/tx/spring-tx-5.0.xsd">
 	 <mvc:annotation-driven />
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
     <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
-	
-	 
-  <!-- declare beans -->  
-  <bean id="postService" class="com.imran.service.PostService" />
-  <bean id="userService" class="com.imran.service.UserService" />
-  
+
+<!--   declare beans   -->
+  <bean id="postService" class="com.imran.service.BookService" />
+<!--   <bean id="userService" class="com.imran.service.UserService" /> -->
+
 	
 </beans>
