@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +18,7 @@
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
         <!-- Application  CSS -->
     <link href="<c:url value="/resources/css/application.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/dataTables.bootstrap.css" />" rel="stylesheet">
 
 
   </head>
@@ -60,41 +63,37 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">     
-      <h1>P to Home Page</h1>
-        <a class="btn btn-primary btn-lg" href="/PnP/book" role="button">Book Home Post</a>
-        <a class="btn btn-primary btn-lg" href="/PnP/bookTwo" role="button">Book Home Two</a>
-        <a class="btn btn-primary btn-lg" href="/PnP/bookDataTableHome" role="button">Book Home JQuery DataTable</a>
+      <h1>Welcome to Book jQuery  Data Table Client Side</h1>
+        <a class="btn btn-primary btn-lg" href="/PnP/" role="button">Home</a>
+        <a class="btn btn-primary btn-lg" href="/PnP/bookDataTableHome" role="button">Back</a>
       </div>
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
+	    <div class="col-md-8 col-md-offset-2 well">
+	    
+			    <table class="table" id="bookDataTable">
+				  <thead class="thead-default">
+				    <tr>
+				      <th>#</th>
+				      <th>Book Name</th>
+				      <th>Book Type</th>
+				      <th>Action</th>
+				    </tr>
+				  </thead>
+		  	      <tbody id="bookDataTableTbody">
+		  	        <c:forEach items="${bookList}" var="item">
+			  	         <tr>
+					      <th>${item.id}</th>
+					      <th>${item.name}</th>
+					      <th>${item.type}</th>
+					      <th>Edit | Delete</th>
+					    </tr>
+					</c:forEach>									
+				 </tbody>
+               </table>
+	    </div>
 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-
-
-      <hr>
-      <footer>
-      <div>
-         <p class="text-center">&copy; 2016 Company, Inc.</p>
-      </div>
-      </footer>
     </div> <!-- /container -->
 
 
@@ -102,6 +101,8 @@
     ================================================== -->
     <script src="<c:url value="/resources/js/jquery-2.1.3.min.js" />"></script>
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.dataTables.js" />"></script>
+    <script src="<c:url value="/resources/js/bookDataTableClientSide.js" />"></script>
     <script src="<c:url value="/resources/js/application.js" />"></script>
   </body>
 </html>

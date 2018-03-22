@@ -18,7 +18,7 @@
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
         <!-- Application  CSS -->
     <link href="<c:url value="/resources/css/application.css" />" rel="stylesheet">
-    <link href="<c:url value="/resources/css/paginate.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/dataTables.bootstrap.css" />" rel="stylesheet">
 
 
   </head>
@@ -63,41 +63,19 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">     
-      <h1>Welcome to Book Home Data Table</h1>
-        <p><a class="btn btn-primary btn-lg" href="/PnP/book role="button">Back Home</a></p>
+      <h1>Data Table Home</h1>
+        <a class="btn btn-primary btn-lg" href="/PnP/" role="button">Back Home</a>
+        <a class="btn btn-primary btn-lg" href="/PnP/bookDataTableClientSide" role="button">Client Side</a>
+        <a class="btn btn-primary btn-lg" href="/PnP/bookDataTableServerSideAction/" role="button">Server Side Action</a>
+        <a class="btn btn-primary btn-lg" href="/PnP/bookDataTableServerSidePagin/" role="button">Server Side Paginate</a>
       </div>
     </div>
 
     <div class="container">
-    
-      <div class="row">
-       <div class="col-md-8 col-md-offset-2 well">
-          <input type="hidden" name="totalRow" id="totalRow" class="totalRow" />
-           <table name="bookTable" id="bookDataTable" class="bookDataTable" width="100%">
-				<thead>
-					<th>#</th>
-					<th>Name</th>
-					<th>Type</th>
-					<th>Action</th>
-				</thead>				
-				<tbody id="bookDataTableTbody">										
-				</tbody>
-				
-			</table>
-     		     
-       </div>  
-    
-      </div>
-      
+	    <div class="col-md-8 col-md-offset-2 well">
 	
-    
-      
-      <hr>
-      <footer>
-      <div>
-         <p class="text-center">&copy; 2016 Company, Inc.</p>
-      </div>
-      </footer>
+	    </div>
+
     </div> <!-- /container -->
 
 
@@ -105,7 +83,8 @@
     ================================================== -->
     <script src="<c:url value="/resources/js/jquery-2.1.3.min.js" />"></script>
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.dataTables.js" />"></script>
+    <script src="<c:url value="/resources/js/bookDataTableClientSide.js" />"></script>
     <script src="<c:url value="/resources/js/application.js" />"></script>
-    <script src="<c:url value="/resources/js/bookDataTable.js" />"></script>
   </body>
 </html>

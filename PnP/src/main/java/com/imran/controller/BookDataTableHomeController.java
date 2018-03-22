@@ -15,19 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.imran.model.Book;
-import com.imran.service.BookDataTableService;
 import com.imran.service.BookService;
 
 @Controller
-public class BookDataTableController {
+public class BookDataTableHomeController {
 	
 	@Autowired
-	BookDataTableService bookDataTableService;
+	BookService bookService;
 
-	@RequestMapping(value = "/bookDataTable", method = RequestMethod.GET)
-	public String home() {
-		bookDataTableService.testMethod();
-		return "bookDataTable";
+
+	@RequestMapping(value = "/bookDataTableHome", method = RequestMethod.GET)
+	public String bookDataTableHome() {
+		return "bookDataTableHome";
 	}
 
 }

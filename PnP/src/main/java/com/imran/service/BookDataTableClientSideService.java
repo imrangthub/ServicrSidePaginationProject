@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class BookDataTableService {
+public class BookDataTableClientSideService {
 	
 	@Autowired
 	DataSource dataSource;
@@ -32,6 +32,29 @@ public class BookDataTableService {
 	
 	public void testMethod(){
 		System.out.println("From DataTable Service");
+	}
+	
+	public List<Book> allDataList(){
+		List<Book> bookList = new ArrayList<Book>();	
+		String getAllDataQuery = "SELECT * FROM `book` ORDER BY ID"; 
+		   System.out.println(getAllDataQuery);
+		try {
+			this.stmt = dataSource.getConnection().createStatement();
+			ResultSet tempResult = stmt.executeQuery(getAllDataQuery);
+			while(tempResult.next()){
+				Book bookObj = new Book();
+				bookObj.setId(Long.parseLong(tempResult.getString("id")));
+				bookObj.setName(tempResult.getString("name"));
+				bookObj.setType(tempResult.getString("type"));
+				bookList.add(bookObj);
+			}
+			stmt.close();
+			dataSource.getConnection().close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bookList;		
 	}
 	
          

@@ -62,61 +62,8 @@ public class BookTwoController {
 		map.put("successMsg","Successfully Update Your Product"+pageNumber);
 		return map;
 	}
-	
-//	@ResponseBody
-//	@RequestMapping(value="/bookTwoList",method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public Book listx(ModelMap map,@RequestParam(value="pageNumber", required=false) String pageNumber){
-//		Book object = new Book();
-//		return object;
-//	}
-	
-	
-	@ResponseBody
-	@GetMapping(value="/bookTwoListxx",produces={MediaType.APPLICATION_JSON_VALUE})
-	public ModelMap list(ModelMap map,@RequestParam(value="pageNumber", required=false) String pageNumber){
-		
-		int showingRowNumber = 3;
-		int currentPageNo = 3;
-		if(pageNumber!=null)
-			currentPageNo = Integer.parseInt(pageNumber);
-		System.out.println("From  Argument Method.");
-		List<Book> bookList = new ArrayList<Book>();
-		Map<String, Object> dataMap = BookTwoService.paginateData(showingRowNumber);
-		dataMap.put("showingRowNumber", showingRowNumber);
-		
-		System.out.println("Current Page:"+currentPageNo);
-		
-        bookList =BookTwoService.bookList(currentPageNo, showingRowNumber);
-		map.addAttribute("bookList", bookList);
-		map.addAttribute("dataMap", dataMap);
-		
-		return map;
-		
-
-	}
-	
-	
 
 
-//	@RequestMapping(value = "/bookTwoxx", method = RequestMethod.GET)
-//	public String loginView(ModelMap map,  @RequestParam(value="pageNumber", required=false) String pageNumber) {
-//		System.out.println("From No Argument Method.");
-//		int showingRowNumber = 3;
-//		int currentPageNo = 3;
-//		if(pageNumber!=null)
-//			currentPageNo = Integer.parseInt(pageNumber);
-//		System.out.println("From  Argument Method.");
-//		List<Book> bookList = new ArrayList<Book>();
-//		Map<String, Object> dataMap = bookService.paginateData(showingRowNumber);
-//		dataMap.put("showingRowNumber", showingRowNumber);
-//		
-//		System.out.println("Current Page:"+currentPageNo);
-//		
-//        bookList =bookService.bookList(currentPageNo, showingRowNumber);
-//		map.addAttribute("bookList", bookList);
-//		map.addAttribute("dataMap", dataMap);
-//		return "bookHomeTwo";
-//	}
 
 }
 
