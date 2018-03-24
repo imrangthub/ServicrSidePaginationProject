@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -35,49 +38,27 @@ public class BookDataTableServerSidePaginController {
 	@Autowired
     BookDataTableServerSidePaginService bookDataTableServerSidePaginService;
 	
-	@RequestMapping(value="/test", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> test() {
-		
-		System.out.println("Fromj test metnod Speverside pageinaton");
-		
-		Map<String, Object> results = new HashMap<String, Object>();
-		List<Book> bookList = new ArrayList<Book>();
-		
-		bookList = bookDataTableServerSidePaginService.list();
-		int displayLength = 5;
-
-		int recordsTotal = bookList.size();
-	    int recordsFiltered = recordsTotal;
-		results.put("draw", 1);
-	    results.put("DisplayLength", displayLength);
-	    results.put("recordsTotal", recordsTotal);
-		results.put("recordsFiltered", recordsFiltered);
-		results.put("data", bookList);
-		results.put("isError", Boolean.FALSE);
-		results.put("message", "test data");
-		return results;
-	
-
-	}
-	
-
-	
 	@RequestMapping(value="/list", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> list(@RequestParam("type") String type) {
+	public @ResponseBody Map<String, Object> test(HttpServletRequest requestParams) {
+				
 		Map<String, Object> results = new HashMap<String, Object>();
 		List<Book> bookList = new ArrayList<Book>();
 		
-		bookList = bookDataTableServerSidePaginService.list();
-		
-		if(!type.equals("all")) {
-			bookList = bookDataTableServerSidePaginService.listByType(type);
-		}
+	    int iDisplayStart= Integer.parseInt(requestParams.getParameter("start"));
+        int  iDisplayLength= Integer.parseInt(requestParams.getParameter("length"));
+        String  search= requestParams.getParameter("search[value]");
+        String  bookType= requestParams.getParameter("bookType");
+		System.out.println("Params Data----------------------------------------------------------------------------");
+		System.out.println("Show Start page no"+requestParams.getParameter("start"));
+		System.out.println("Show Length"+requestParams.getParameter("length"));
+		System.out.println("Show Search Letter"+requestParams.getParameter("search[value]"));
+		System.out.println("Show type"+requestParams.getParameter("bookType"));
+		System.out.println("Params Data----------------------------------------------------------------------------");
 
-		int TotalRecords = bookList.size();
-	    int TotalDisplayRecords = 2;
-	    
-		results.put("TotalRecords", TotalRecords);
-		results.put("TotalDisplayRecords", TotalDisplayRecords);
+		bookList = bookDataTableServerSidePaginService.bookListWithQuery(bookType, search, iDisplayStart,iDisplayLength);
+		int recordsTotal = bookDataTableServerSidePaginService.countValue();
+	    results.put("recordsTotal", recordsTotal);
+		results.put("recordsFiltered", recordsTotal);
 		results.put("data", bookList);
 		results.put("isError", Boolean.FALSE);
 		results.put("message", "test data");
@@ -85,11 +66,27 @@ public class BookDataTableServerSidePaginController {
 	
 
 	}
+
 	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String serverSidePagination(ModelMap map) {
 		return "bookDataTableServerSidePagin";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	public Map<String, Object> home(@PathVariable("id") String id) {
+		Map<String, Object> results = new HashMap<String, Object>();
+		if(bookDataTableServerSidePaginService.delate(id)) {
+			results.put("isError", Boolean.FALSE);
+			results.put("message", "Successfully delete Completed");
+		}else{
+			results.put("isError", Boolean.TRUE);
+			results.put("message", "Delete operation failed");	
+		}
+		
+		return results;
 	}
 
 

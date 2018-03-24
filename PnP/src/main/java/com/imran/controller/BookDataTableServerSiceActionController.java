@@ -49,10 +49,15 @@ public class BookDataTableServerSiceActionController {
 
 	}
 	
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(ModelMap map) {
 		return "bookDataTableServerSideAction";
 	}
+	
+
+	
+	
 
 
 

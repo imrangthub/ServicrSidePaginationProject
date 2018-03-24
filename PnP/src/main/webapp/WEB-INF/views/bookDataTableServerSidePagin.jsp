@@ -92,9 +92,9 @@
 		    <table class="table" id="serverSidePaginationTable">
 			  <thead class="thead-default">
 			    <tr>
-			      <th>#</th>
 			      <th>Book Name</th>
 			      <th>Book Type</th>
+			      <th>Action</th>
 			    </tr>
 			  </thead>
 	        </table>
